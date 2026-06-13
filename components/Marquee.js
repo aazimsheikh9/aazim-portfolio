@@ -3,7 +3,12 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "../lib/gsap";
 
-export default function Marquee({ items, speed = 200, className = "" }) {
+export default function Marquee({
+  items,
+  speed = 200,
+  mobileSpeed,
+  className = "",
+}) {
   const trackRef = useRef(null);
 
   useEffect(() => {
@@ -14,12 +19,14 @@ export default function Marquee({ items, speed = 200, className = "" }) {
     ).matches;
     if (reduced) return;
 
-    // The track contains [...items, ...items], so width is exactly 2x the loop unit.
-    // Moving by xPercent: -50 puts the second copy in the visual position of the first —
-    // when repeat: -1 wraps back to 0, the snap is invisible. No jitter.
+    const mobileMql = window.matchMedia("(max-width: 640px)");
+    const pickSpeed = () =>
+      mobileMql.matches ? (mobileSpeed ?? speed * 0.6) : speed;
+
+    // halfWidth = one loop unit (track has [...items, ...items])
     const compute = () => {
       const halfWidth = track.scrollWidth / 2;
-      return halfWidth / speed; // duration for one loop in seconds
+      return halfWidth / pickSpeed();
     };
 
     gsap.set(track, { xPercent: 0 });
@@ -30,25 +37,24 @@ export default function Marquee({ items, speed = 200, className = "" }) {
       repeat: -1,
     });
 
-    const onResize = () => {
-      const d = compute();
-      tween.duration(d);
-    };
+    const onResize = () => tween.duration(compute());
     window.addEventListener("resize", onResize);
+    mobileMql.addEventListener("change", onResize);
 
     return () => {
       window.removeEventListener("resize", onResize);
+      mobileMql.removeEventListener("change", onResize);
       tween.kill();
     };
-  }, [speed, items]);
+  }, [speed, mobileSpeed, items]);
 
   return (
     <div className={`overflow-hidden whitespace-nowrap ${className}`}>
       <div ref={trackRef} className="marquee-track">
         {[...items, ...items].map((it, i) => (
-          <span key={i} className="inline-flex items-center mx-8">
+          <span key={i} className="inline-flex items-center">
             <span>{it}</span>
-            <span className="mx-8 opacity-30">✦</span>
+            <span className="mx-3 sm:mx-6 lg:mx-8 opacity-30">✦</span>
           </span>
         ))}
       </div>
