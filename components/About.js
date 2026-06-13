@@ -76,7 +76,7 @@ export default function About() {
               className="absolute inset-x-0 top-0 h-[118%] will-change-transform"
             >
               <Image
-                src="/aazim-pic-2.jpeg"
+                src="/aazim-pic-2-beige.png"
                 alt="Mohammad Aazim"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
