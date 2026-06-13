@@ -10,8 +10,8 @@ const initial = { name: "", email: "", message: "", company: "" };
 function validate({ name, email, message }) {
   const errors = {};
   if (!name.trim()) errors.name = "Required";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = "Invalid email";
-  if (message.trim().length < 10) errors.message = "Tell me a bit more";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = "Invalid";
+  if (message.trim().length < 10) errors.message = "Too short";
   return errors;
 }
 
@@ -233,12 +233,13 @@ function Field({ label, name, value, onChange, error, type = "text", as, rows })
   const Tag = as || "input";
   return (
     <label className="group block border-b border-line pb-3">
-      <div className="flex items-baseline justify-between mb-2">
-        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+      <div className="flex items-baseline justify-between gap-3 mb-2 min-w-0">
+        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted truncate">
           {label}
         </span>
         {error && (
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-rose-400">
+          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-rose-400 shrink-0 flex items-center gap-1.5">
+            <span className="inline-block h-1 w-1 rounded-full bg-rose-400" />
             {error}
           </span>
         )}
