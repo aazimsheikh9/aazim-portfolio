@@ -212,7 +212,7 @@ export default function Contact() {
             "Next.js · React · GSAP",
             "Open to Global Opportunities",
           ]}
-          speed={120}
+          speed={280}
         />
       </div>
 

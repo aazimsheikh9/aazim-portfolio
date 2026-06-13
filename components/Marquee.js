@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "../lib/gsap";
 
-export default function Marquee({ items, speed = 30, className = "" }) {
+export default function Marquee({ items, speed = 200, className = "" }) {
   const trackRef = useRef(null);
 
   useEffect(() => {
@@ -14,14 +14,32 @@ export default function Marquee({ items, speed = 30, className = "" }) {
     ).matches;
     if (reduced) return;
 
-    const halfWidth = track.scrollWidth / 2;
+    // The track contains [...items, ...items], so width is exactly 2x the loop unit.
+    // Moving by xPercent: -50 puts the second copy in the visual position of the first —
+    // when repeat: -1 wraps back to 0, the snap is invisible. No jitter.
+    const compute = () => {
+      const halfWidth = track.scrollWidth / 2;
+      return halfWidth / speed; // duration for one loop in seconds
+    };
+
+    gsap.set(track, { xPercent: 0 });
     const tween = gsap.to(track, {
-      x: -halfWidth,
-      duration: halfWidth / speed,
+      xPercent: -50,
+      duration: compute(),
       ease: "none",
       repeat: -1,
     });
-    return () => tween.kill();
+
+    const onResize = () => {
+      const d = compute();
+      tween.duration(d);
+    };
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+      tween.kill();
+    };
   }, [speed, items]);
 
   return (
