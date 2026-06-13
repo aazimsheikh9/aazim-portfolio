@@ -40,7 +40,7 @@ export default function BeyondCode() {
         type="lines"
         className="font-display text-4xl sm:text-5xl lg:text-7xl leading-[1.05] mb-14 sm:mb-20 max-w-4xl"
       >
-        I also build cricket bats.
+        I build premium cricket gear — from bats and gloves to pads — and the digital brand behind it.
       </RevealText>
 
       <a
