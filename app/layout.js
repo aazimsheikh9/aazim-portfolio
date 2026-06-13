@@ -26,7 +26,7 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://aazim.dev";
+const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
