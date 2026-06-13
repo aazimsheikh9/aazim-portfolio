@@ -38,7 +38,7 @@ export default function NotFound() {
 
           <div className="flex flex-wrap gap-3">
             <MagneticButton
-              as={Link}
+              as="a"
               href="/"
               variant="outline"
               data-cursor="Home ↗"
@@ -46,7 +46,7 @@ export default function NotFound() {
               Back to home
             </MagneticButton>
             <MagneticButton
-              as={Link}
+              as="a"
               href="/#contact"
               variant="ghost"
               data-cursor="Say hi"
