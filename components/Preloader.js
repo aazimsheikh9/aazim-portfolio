@@ -87,12 +87,14 @@ export default function Preloader() {
       aria-hidden="true"
     >
       <div className="overflow-hidden">
-        <h2
+        {/* Decorative — using a span, not <h2>, so it doesn't pollute the
+            document outline that crawlers read. */}
+        <span
           ref={wordRef}
-          className="font-display text-[12vw] leading-none sm:text-[8vw]"
+          className="font-display text-[12vw] leading-none sm:text-[8vw] block"
         >
           Aazim
-        </h2>
+        </span>
       </div>
       <div className="overflow-hidden">
         <span
