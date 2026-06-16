@@ -34,7 +34,7 @@ const nextConfig = {
         ],
       },
       {
-        source: "/Mohammad_Aazim_Resume_2026.pdf",
+        source: "/Mohammad_Aazim_Resume_2026_1.pdf",
         headers: [
           {
             key: "Cache-Control",
@@ -42,7 +42,7 @@ const nextConfig = {
           },
           {
             key: "Content-Disposition",
-            value: "inline; filename=\"Mohammad_Aazim_Resume_2026.pdf\"",
+            value: "inline; filename=\"Mohammad_Aazim_Resume_2026_1.pdf\"",
           },
         ],
       },

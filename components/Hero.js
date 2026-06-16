@@ -180,7 +180,7 @@ export default function Hero() {
             </MagneticButton>
             <MagneticButton
               as="a"
-              href="/Mohammad_Aazim_Resume_2026.pdf"
+              href="/Mohammad_Aazim_Resume_2026_1.pdf"
               download
               variant="ghost"
               data-cursor="Download"

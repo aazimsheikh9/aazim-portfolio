@@ -237,7 +237,7 @@ export default function Menu() {
           <div>
             <div className="text-muted mb-2">Resume</div>
             <a
-              href="/Mohammad_Aazim_Resume_2026.pdf"
+              href="/Mohammad_Aazim_Resume_2026_1.pdf"
               download
               className="text-fg hover:text-fg/60"
               data-cursor="Download"
