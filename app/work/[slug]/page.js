@@ -44,7 +44,7 @@ export default async function CaseStudy({ params }) {
   };
 
   return (
-    <main className="relative px-6 sm:px-10 pt-28 sm:pt-32 pb-20">
+    <main className="relative px-5 sm:px-10 pt-24 sm:pt-32 pb-16 sm:pb-20 overflow-x-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -58,15 +58,15 @@ export default async function CaseStudy({ params }) {
         <span aria-hidden>←</span> Back to work
       </Link>
 
-      <header className="mt-12 sm:mt-16 grid grid-cols-12 gap-6 items-end border-b border-line pb-10 sm:pb-12">
-        <div className="col-span-12 lg:col-span-9">
-          <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted mb-5 sm:mb-6">
+      <header className="mt-10 sm:mt-16 grid grid-cols-12 gap-4 sm:gap-6 items-end border-b border-line pb-8 sm:pb-12">
+        <div className="col-span-12 lg:col-span-9 min-w-0">
+          <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted mb-4 sm:mb-6">
             ({project.index}) — {project.year}
           </div>
           <RevealText
             as="h1"
             type="lines"
-            className="font-display text-[14vw] sm:text-6xl lg:text-[8vw] leading-[0.95] tracking-tight"
+            className="font-display text-[11vw] sm:text-5xl md:text-6xl lg:text-[8vw] leading-[0.95] tracking-tight break-words"
           >
             {project.title}
           </RevealText>
@@ -77,8 +77,8 @@ export default async function CaseStudy({ params }) {
         </div>
       </header>
 
-      <section className="mt-12 sm:mt-16 grid grid-cols-12 gap-8">
-        <div className="col-span-12 lg:col-span-7 space-y-5 text-fg/80 text-base sm:text-lg leading-relaxed">
+      <section className="mt-10 sm:mt-16 grid grid-cols-12 gap-6 sm:gap-8 lg:gap-12">
+        <div className="col-span-12 lg:col-span-7 space-y-5 text-fg/80 text-[15px] sm:text-lg leading-relaxed min-w-0">
           {project.body.map((p, i) => (
             <RevealText key={i} as="p" type="lines">
               {p}
@@ -105,16 +105,16 @@ export default async function CaseStudy({ params }) {
           )}
         </div>
 
-        <aside className="col-span-12 lg:col-span-5 lg:pl-8 space-y-10">
+        <aside className="col-span-12 lg:col-span-5 lg:pl-6 space-y-8 sm:space-y-10 min-w-0">
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted mb-4">
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted mb-3 sm:mb-4">
               Stack
             </div>
-            <ul className="flex flex-wrap gap-2">
+            <ul className="flex flex-wrap gap-1.5 sm:gap-2">
               {project.stack.map((s) => (
                 <li
                   key={s}
-                  className="rounded-full border border-line px-3 py-1 font-mono text-[11px] uppercase tracking-[0.15em]"
+                  className="rounded-full border border-line px-2.5 sm:px-3 py-1 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.12em] sm:tracking-[0.15em] whitespace-nowrap"
                 >
                   {s}
                 </li>
@@ -122,17 +122,21 @@ export default async function CaseStudy({ params }) {
             </ul>
           </div>
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted mb-4">
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted mb-3 sm:mb-4">
               Results
             </div>
             <ul className="border-t border-line">
               {project.metrics.map((m) => (
                 <li
                   key={m.label}
-                  className="flex items-baseline justify-between border-b border-line py-4"
+                  className="flex items-baseline justify-between gap-4 border-b border-line py-3.5 sm:py-4 min-w-0"
                 >
-                  <span className="text-fg/70">{m.label}</span>
-                  <span className="font-display text-2xl">{m.value}</span>
+                  <span className="text-fg/70 text-sm sm:text-base truncate">
+                    {m.label}
+                  </span>
+                  <span className="font-display text-xl sm:text-2xl shrink-0 whitespace-nowrap">
+                    {m.value}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -140,8 +144,8 @@ export default async function CaseStudy({ params }) {
         </aside>
       </section>
 
-      <section className="mt-24 sm:mt-32 border-t border-line pt-10 sm:pt-12">
-        <div className="flex items-baseline justify-between mb-8 sm:mb-10 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+      <section className="mt-20 sm:mt-32 border-t border-line pt-8 sm:pt-12">
+        <div className="flex items-baseline justify-between mb-6 sm:mb-10 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
           <span>(Up next)</span>
           <Link href="/#work" className="hover:text-fg">
             All work →
