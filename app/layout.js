@@ -19,6 +19,7 @@ import Nav from "../components/Nav";
 import Menu from "../components/Menu";
 import ScrollProgress from "../components/ScrollProgress";
 import Analytics from "../components/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 
 // Fonts — display: "swap" so text paints in fallback first, swaps when the
 // web font arrives. Each font exposes a CSS variable consumed by globals.css.
@@ -275,6 +276,7 @@ export default function RootLayout({ children }) {
         {/* Analytics loaded after the page is interactive so it never
             competes with LCP. Renders nothing if NEXT_PUBLIC_GA_ID is unset. */}
         <Analytics />
+        <VercelAnalytics />
       </body>
     </html>
   );
