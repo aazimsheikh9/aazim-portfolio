@@ -1,7 +1,8 @@
-"use client";
+import Image from "next/image";
+import Reveal from "./Reveal";
 
-import RevealText from "./RevealText";
-
+// The original six services, numbered as they were. This is the theme's dark
+// break, with the portrait drifting behind it (see ScrollFX).
 const services = [
   {
     n: "01",
@@ -37,35 +38,36 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative px-6 sm:px-10 py-24 sm:py-32 lg:py-40 border-t border-line">
-      <div className="flex items-baseline justify-between mb-10 sm:mb-16 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-        <span>(What I do)</span>
-        <span>Services</span>
+    <section className="band band--night svc" id="services">
+      <div className="svc__photo" data-parallax>
+        <Image
+          src="/aazim-pic-2-beige.png"
+          alt=""
+          fill
+          sizes="(max-width: 640px) 130vw, 760px"
+        />
       </div>
+      <div className="svc__wash" />
 
-      <RevealText
-        as="h2"
-        type="lines"
-        className="font-display text-3xl sm:text-5xl lg:text-7xl leading-[1.05] mb-12 sm:mb-20 max-w-4xl tracking-tight"
-      >
-        Front-end engineering with a designer's pulse.
-      </RevealText>
+      <div className="shell">
+        <div className="srow">
+          <span>(What I do)</span>
+          <span>Services</span>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-line">
-        {services.map((s) => (
-          <div
-            key={s.n}
-            className="group relative p-6 sm:p-8 border-b border-line md:[&:nth-child(odd)]:border-r lg:border-r lg:[&:nth-child(3n)]:border-r-0 transition-colors hover:bg-white/[0.02]"
-          >
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-              ({s.n})
-            </span>
-            <h3 className="mt-4 font-display text-2xl sm:text-3xl">
-              {s.title}
-            </h3>
-            <p className="mt-4 text-fg/70 text-sm leading-relaxed">{s.body}</p>
-          </div>
-        ))}
+        <Reveal as="h2" className="stitle stitle--xl">
+          Front-end engineering with a designer&apos;s pulse.
+        </Reveal>
+
+        <div className="svc__grid">
+          {services.map((s) => (
+            <article className="svc__cell" key={s.n}>
+              <p className="svc__n">({s.n})</p>
+              <h3 className="svc__h">{s.title}</h3>
+              <p className="svc__p">{s.body}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

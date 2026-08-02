@@ -6,9 +6,11 @@ import BeyondCode from "../components/BeyondCode";
 import Experience from "../components/Experience";
 import Contact from "../components/Contact";
 
+// Section order as on byaazim.in: about → work → services → beyond →
+// experience → contact.
 export default function Home() {
   return (
-    <main id="top" className="relative">
+    <main id="top">
       <Hero />
       <About />
       <Work />
