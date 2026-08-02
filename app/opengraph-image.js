@@ -15,9 +15,10 @@ export default async function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
+          // Matches the hero band — night ground, terracotta glow, sand text.
           background:
-            "radial-gradient(circle at 80% 20%, #1f2937 0%, #0b0b0b 60%)",
-          color: "#ededed",
+            "radial-gradient(circle at 22% 30%, rgba(188,75,53,0.30) 0%, #14100F 62%)",
+          color: "#F4F1EA",
           fontFamily: "Georgia, serif",
         }}
       >
@@ -29,44 +30,33 @@ export default async function OpengraphImage() {
             fontSize: 22,
             letterSpacing: 4,
             textTransform: "uppercase",
-            opacity: 0.7,
+            color: "#DD6B6B",
           }}
         >
-          <span>Aazim / dev</span>
+          <span>Front-End Engineer</span>
           <span>Delhi · 2026</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               display: "flex",
-              fontSize: 140,
+              fontSize: 132,
               lineHeight: 0.95,
               letterSpacing: -3,
             }}
           >
-            Mohammad
+            Mohammad Aazim
           </div>
           <div
             style={{
               display: "flex",
-              fontSize: 140,
-              lineHeight: 0.95,
-              letterSpacing: -3,
-            }}
-          >
-            <span>Aazim</span>
-            <span style={{ opacity: 0.4 }}>.</span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              marginTop: 24,
+              marginTop: 28,
               fontSize: 28,
-              opacity: 0.7,
+              opacity: 0.72,
               fontFamily: "system-ui, sans-serif",
             }}
           >
-            Front-End Web Developer · Next.js · React · Motion
+            Next.js · React · Firebase · GSAP
           </div>
         </div>
       </div>

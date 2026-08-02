@@ -4,40 +4,65 @@
 //   • Viewport API: theme-color, color-scheme
 //   • Structured data (JSON-LD) for Person, WebSite, ProfessionalService
 //   • Preloads the hero portrait (LCP candidate)
-//   • Mounts global chrome: Preloader, Cursor, ScrollProgress, Nav, Menu,
-//     SmoothScroll, Analytics
+//   • Mounts global chrome: Nav, Menu, ScrollFX, Analytics
 //
 // Keep this file a Server Component — metadata + JSON-LD must render on
 // the server for crawlers to see them in the initial HTML.
 
-import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import {
+  Bebas_Neue,
+  Playfair_Display,
+  Source_Serif_4,
+  JetBrains_Mono,
+} from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "../components/SmoothScroll";
-import Cursor from "../components/Cursor";
-import Preloader from "../components/Preloader";
 import Nav from "../components/Nav";
 import Menu from "../components/Menu";
-import ScrollProgress from "../components/ScrollProgress";
+import ScrollFX from "../components/ScrollFX";
 import Analytics from "../components/Analytics";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 
 // Fonts — display: "swap" so text paints in fallback first, swaps when the
-// web font arrives. Each font exposes a CSS variable consumed by globals.css.
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-display",
+// web font arrives. Each exposes a --ff-* variable that globals.css composes
+// into a full stack with fallbacks. The --ff- prefix keeps them clear of
+// Tailwind's --font-* theme namespace.
+//
+// Four faces, each with one job: Bebas for the name and the big statements,
+// Playfair for headings, Source Serif for body, JetBrains for labels.
+const bebas = Bebas_Neue({
+  variable: "--ff-display",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  variable: "--ff-serif",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// `axes: ["opsz"]` matters. The concept requests
+// `Source+Serif+4:opsz,wght@8..60,...`, so its optical-size axis is live and
+// glyph widths track the font size. next/font ships only the weight axis unless
+// you opt in, which pins opsz at the family default and renders measurably
+// wider — enough to shift line breaks in the body copy.
+const sourceSerif = Source_Serif_4({
+  variable: "--ff-body",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  display: "swap",
+});
+
+// Note: the arrows (→ ↓ ← ↗) fall outside JetBrains Mono's latin subset, so the
+// next family in the chain draws them. next/font inserts a size-adjusted
+// "JetBrains Mono Fallback" ahead of ui-monospace, which stretches those glyphs
+// to roughly double width. `adjustFontFallback: false` does not remove it from
+// the emitted variable in 16.2.7, so the `.glyph` class in globals.css gives
+// the arrows an explicit monospace stack instead.
 const jetbrains = JetBrains_Mono({
-  variable: "--font-mono",
+  variable: "--ff-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -127,15 +152,21 @@ export const metadata = {
 
 // Viewport — split from metadata in App Router. Theme-color drives the
 // mobile browser chrome (Chrome address bar, iOS status bar tint).
+//
+// The page opens on the dark hero band, so theme-color matches --night rather
+// than the paper ground below it — that keeps the browser chrome continuous
+// with what's actually on screen at first paint. colorScheme is pinned light
+// in both branches: this is a single committed palette, not a theme, and the
+// dark bands are composition. See the note at the top of globals.css.
 export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0b0b0b" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0b0b" },
+    { media: "(prefers-color-scheme: light)", color: "#14100f" },
+    { media: "(prefers-color-scheme: dark)", color: "#14100f" },
   ],
-  colorScheme: "dark",
+  colorScheme: "light",
 };
 
 // ─── JSON-LD ──────────────────────────────────────────────────────────────
@@ -236,16 +267,17 @@ export default function RootLayout({ children }) {
       // suppressHydrationWarning quiets the dev warning when extensions
       // (Grammarly, dark-reader, etc.) mutate <html> attributes before React
       // hydrates. Doesn't disable SSR safety, just the noisy console message.
-      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrains.variable} antialiased`}
+      className={`${bebas.variable} ${playfair.variable} ${sourceSerif.variable} ${jetbrains.variable} antialiased`}
       suppressHydrationWarning
     >
       <head>
-        {/* Preload the hero portrait — LCP candidate on the homepage.
-            fetchPriority=high tells the browser to grab it before scripts. */}
+        {/* Preload the standing portrait — it fills the hero band and is the
+            LCP candidate on the homepage. fetchPriority=high tells the browser
+            to grab it before scripts. */}
         <link
           rel="preload"
           as="image"
-          href="/Firefly.jpg"
+          href="/aazim-pic-2-beige.png"
           fetchPriority="high"
         />
 
@@ -265,13 +297,16 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className="bg-bg text-fg grain">
-        <Preloader />
-        <Cursor />
-        <ScrollProgress />
+      {/* Ground colour and type come from the body rule in globals.css. The
+          grain overlay is gone — it was tuned for the old dark ground and
+          reads as dirt on warm paper. */}
+      {/* Motion is three effects — word blur reveal, rise-in, parallax — over
+          native scrolling, all driven by ScrollFX. */}
+      <body>
         <Nav />
         <Menu />
-        <SmoothScroll>{children}</SmoothScroll>
+        {children}
+        <ScrollFX />
 
         {/* Analytics loaded after the page is interactive so it never
             competes with LCP. Renders nothing if NEXT_PUBLIC_GA_ID is unset. */}
