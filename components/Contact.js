@@ -1,9 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import RevealText from "./RevealText";
-import MagneticButton from "./MagneticButton";
-import Marquee from "./Marquee";
 
 const initial = { name: "", email: "", message: "", company: "" };
 
@@ -14,6 +11,31 @@ function validate({ name, email, message }) {
   if (message.trim().length < 10) errors.message = "Too short";
   return errors;
 }
+
+function Field({ label, name, value, onChange, error, type = "text", as, rows }) {
+  const Tag = as || "input";
+  return (
+    <label className="field">
+      <div className="field__row">
+        <span className="field__label">{label}</span>
+        {error && <span className="field__err">{error}</span>}
+      </div>
+      <Tag
+        type={as ? undefined : type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        rows={rows}
+      />
+    </label>
+  );
+}
+
+const socials = [
+  { label: "LinkedIn ↗", href: "https://www.linkedin.com/in/mohammad-aazim" },
+  { label: "GitHub ↗", href: "https://www.github.com/aazimsheikh9" },
+  { label: "AS Cricket ↗", href: "https://ascricketgears.vercel.app/" },
+];
 
 export default function Contact() {
   const [form, setForm] = useState(initial);
@@ -37,9 +59,7 @@ export default function Contact() {
         body: JSON.stringify(form),
       });
       const data = await res.json();
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || "Failed to send");
-      }
+      if (!res.ok || !data.ok) throw new Error(data.error || "Failed to send");
       setStatus({
         state: "success",
         msg: "Thanks — message landed. I'll reply within a couple of days.",
@@ -54,205 +74,127 @@ export default function Contact() {
   };
 
   return (
-    <section
-      id="contact"
-      className="relative px-6 sm:px-10 pt-24 sm:pt-32 lg:pt-40 pb-8 border-t border-line"
-    >
-      <div className="flex items-baseline justify-between mb-8 sm:mb-12 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-        <span>(Contact)</span>
-        <span>Say hi</span>
-      </div>
+    <section className="band band--night contact" id="contact">
+      <div className="contact__glow" />
+      <div className="shell">
+        <div className="srow">
+          <span>(Contact)</span>
+          <span>Say hi</span>
+        </div>
 
-      <RevealText
-        as="h2"
-        type="lines"
-        className="font-display text-[14vw] sm:text-7xl lg:text-[9vw] leading-[0.93] max-w-6xl tracking-tight"
-      >
-        Got a project in mind?
-        <br />
-        <span className="text-fg/50">Let&apos;s talk.</span>
-      </RevealText>
+        <h2 className="contact__t">
+          Got a project in mind?
+          <br />
+          <em>Let&apos;s talk.</em>
+        </h2>
 
-      <div className="mt-12 sm:mt-20 grid grid-cols-12 gap-8 lg:gap-12">
-        <form
-          onSubmit={onSubmit}
-          className="col-span-12 lg:col-span-7 flex flex-col gap-6"
-          noValidate
-        >
-          <input
-            type="text"
-            name="company"
-            value={form.company}
-            onChange={onChange}
-            tabIndex={-1}
-            autoComplete="off"
-            className="hidden"
-            aria-hidden="true"
-          />
+        <div className="contact__grid">
+          <form onSubmit={onSubmit} noValidate className="form">
+            {/* Honeypot — bots fill it, humans never see it. */}
+            <input
+              type="text"
+              name="company"
+              value={form.company}
+              onChange={onChange}
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
 
-          <Field
-            label="Your name"
-            name="name"
-            value={form.name}
-            onChange={onChange}
-            error={errors.name}
-          />
-          <Field
-            label="Email"
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={onChange}
-            error={errors.email}
-          />
-          <Field
-            label="What's on your mind?"
-            name="message"
-            as="textarea"
-            value={form.message}
-            onChange={onChange}
-            error={errors.message}
-            rows={5}
-          />
+            <Field
+              label="Your name"
+              name="name"
+              value={form.name}
+              onChange={onChange}
+              error={errors.name}
+            />
+            <Field
+              label="Email"
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={onChange}
+              error={errors.email}
+            />
+            <Field
+              label="What's on your mind?"
+              name="message"
+              as="textarea"
+              rows={4}
+              value={form.message}
+              onChange={onChange}
+              error={errors.message}
+            />
 
-          <div className="flex flex-wrap items-center gap-4 mt-2">
-            <MagneticButton
-              type="submit"
-              disabled={status.state === "sending"}
-              variant="outline"
-              className="disabled:opacity-50"
-              data-cursor="Send →"
-            >
-              {status.state === "sending" ? "Sending…" : "Send message"}
-            </MagneticButton>
-            <MagneticButton
-              as="a"
-              href="/Mohammad_Aazim_Resume_2026_1.pdf"
-              download
-              variant="ghost"
-              data-cursor="Download"
-            >
-              Resume ↓
-            </MagneticButton>
+            <div className="flex flex-wrap items-center gap-4">
+              <button
+                type="submit"
+                className="btn"
+                disabled={status.state === "sending"}
+              >
+                {status.state === "sending" ? "Sending…" : "Send message"}
+              </button>
+              <a
+                className="btn btn--ghost"
+                href="/Mohammad_Aazim_Resume_2026_1.pdf"
+                download
+              >
+                Resume <span className="glyph">↓</span>
+              </a>
+            </div>
+
             {status.msg && (
               <p
-                className={`text-sm w-full ${
+                role="status"
+                className={`form__status ${
                   status.state === "success"
-                    ? "text-emerald-400"
-                    : "text-rose-400"
+                    ? "form__status--ok"
+                    : "form__status--err"
                 }`}
               >
                 {status.msg}
               </p>
             )}
-          </div>
-        </form>
+          </form>
 
-        <aside className="col-span-12 lg:col-span-5 lg:pl-8 flex flex-col gap-8">
-          <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-              Email
+          <aside className="contact__aside">
+            <div>
+              <p className="contact__label">Email</p>
+              <a className="contact__big" href="mailto:sheikhaazim13@gmail.com">
+                sheikhaazim13@gmail.com
+              </a>
             </div>
-            <a
-              href="mailto:sheikhaazim13@gmail.com"
-              className="mt-2 inline-block font-display text-xl sm:text-2xl lg:text-3xl break-all hover:text-fg/70 transition-colors"
-              data-cursor="Send"
-            >
-              sheikhaazim13@gmail.com
-            </a>
-          </div>
-          <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-              Phone
+            <div>
+              <p className="contact__label">Phone</p>
+              <a className="contact__big" href="tel:+918533990022">
+                +91 85339 90022
+              </a>
             </div>
-            <a
-              href="tel:+918533990022"
-              className="mt-2 inline-block font-display text-xl sm:text-2xl lg:text-3xl"
-            >
-              +91 85339 90022
-            </a>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="https://www.linkedin.com/in/mohammad-aazim"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-bg transition-colors"
-              data-cursor="LinkedIn ↗"
-            >
-              LinkedIn ↗
-            </a>
-            <a
-              href="https://www.github.com/aazimsheikh9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-bg transition-colors"
-              data-cursor="GitHub ↗"
-            >
-              GitHub ↗
-            </a>
-            <a
-              href="https://ascricketgears.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2 font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-white hover:text-bg transition-colors"
-              data-cursor="AS ↗"
-            >
-              AS Cricket ↗
-            </a>
-          </div>
-        </aside>
-      </div>
+            <div className="pills">
+              {socials.map((s) => (
+                <a
+                  className="pill"
+                  key={s.href}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          </aside>
+        </div>
 
-      <div className="mt-20 sm:mt-32 -mx-6 sm:-mx-10 border-t border-line pt-8 sm:pt-10 font-display text-[16vw] sm:text-[14vw] leading-none">
-        <Marquee
-          items={[
-            "Mohammad Aazim",
-            "Front-End Developer",
-            "Next.js · React · GSAP",
-            "Open to Global Opportunities",
-          ]}
-          speed={280}
-        />
+        <div className="pagefoot">
+          <span>© {new Date().getFullYear()} Mohammad Aazim</span>
+          <span>Built with Next.js · GSAP · Tailwind</span>
+          <a href="#top">
+            Back to top <span className="glyph">↑</span>
+          </a>
+        </div>
       </div>
-
-      <footer className="mt-8 sm:mt-10 flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-muted">
-        <span>© {new Date().getFullYear()} Mohammad Aazim</span>
-        <span className="hidden sm:inline">
-          Built with Next.js · GSAP · Lenis · Tailwind
-        </span>
-        <a href="#top" className="hover:text-fg" data-cursor="Top ↑">
-          Back to top ↑
-        </a>
-      </footer>
     </section>
-  );
-}
-
-function Field({ label, name, value, onChange, error, type = "text", as, rows }) {
-  const Tag = as || "input";
-  return (
-    <label className="group block border-b border-line pb-3">
-      <div className="flex items-baseline justify-between gap-3 mb-2 min-w-0">
-        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted truncate">
-          {label}
-        </span>
-        {error && (
-          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-rose-400 shrink-0 flex items-center gap-1.5">
-            <span className="inline-block h-1 w-1 rounded-full bg-rose-400" />
-            {error}
-          </span>
-        )}
-      </div>
-      <Tag
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        rows={rows}
-        className="w-full bg-transparent text-fg text-base sm:text-lg lg:text-xl outline-none resize-none placeholder:text-fg/30 min-h-[44px]"
-        placeholder=" "
-      />
-    </label>
   );
 }

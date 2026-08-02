@@ -83,7 +83,7 @@ export default function NotFoundClient() {
         <div className="col-span-12 lg:col-span-8 order-2 lg:order-1">
           <div
             aria-label="404"
-            className="font-display text-[28vw] sm:text-[22vw] lg:text-[16vw] leading-[0.85] tracking-tight flex"
+            className="font-display text-[30vw] sm:text-[24vw] lg:text-[17vw] leading-[0.82] tracking-[0.02em] flex"
           >
             <span className="overflow-hidden inline-block">
               <span ref={fourRef} className="inline-block">
@@ -91,7 +91,7 @@ export default function NotFoundClient() {
               </span>
             </span>
             <span className="overflow-hidden inline-block">
-              <span ref={ohRef} className="inline-block text-fg/60">
+              <span ref={ohRef} className="inline-block text-terra">
                 0
               </span>
             </span>
@@ -104,14 +104,15 @@ export default function NotFoundClient() {
         </div>
 
         <div className="col-span-12 lg:col-span-4 order-1 lg:order-2 flex flex-col gap-3 lg:items-end lg:text-right">
-          <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-muted">
+          <span className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-ink/45">
             Lost in the routes
           </span>
           <p
             ref={subRef}
-            className="font-display text-2xl sm:text-3xl lg:text-4xl leading-[1.05] max-w-sm"
+            className="font-serif text-2xl sm:text-3xl lg:text-4xl leading-[1.05] max-w-sm"
           >
-            This page <span className="text-muted">drifted</span> into the void.
+            This page <span className="text-ink/45">drifted</span> into the
+            void.
           </p>
         </div>
       </div>
