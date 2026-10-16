@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Mohammad Aazim — Front-End Web Developer";
+export const alt = "Mohammad Aazim — AI Full Stack Developer";
 
 export default async function OpengraphImage() {
   return new ImageResponse(
@@ -33,7 +33,7 @@ export default async function OpengraphImage() {
             color: "#DD6B6B",
           }}
         >
-          <span>Front-End Engineer</span>
+          <span>AI Full Stack Developer</span>
           <span>Delhi · 2026</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -56,7 +56,7 @@ export default async function OpengraphImage() {
               fontFamily: "system-ui, sans-serif",
             }}
           >
-            Next.js · React · Firebase · GSAP
+            Next.js · Node.js · LLM Integration · Firebase
           </div>
         </div>
       </div>

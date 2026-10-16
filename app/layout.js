@@ -79,11 +79,11 @@ export const metadata = {
   // Templated title — every child page just sets a short string, gets
   // "<page> — Mohammad Aazim" automatically.
   title: {
-    default: "Mohammad Aazim — Front-End Web Developer (Next.js · React)",
+    default: "Mohammad Aazim — AI Full Stack Developer (Next.js · Node.js · LLM)",
     template: "%s — Mohammad Aazim",
   },
   description:
-    "Mohammad Aazim is a Front-End Web Developer in Delhi with 4+ years of experience building fast, accessible interfaces with Next.js, React, and Tailwind. Led the WordPress → Next.js 14 migration of internationalschooling.org.",
+    "Mohammad Aazim is an AI Full Stack Developer in Delhi with 4+ years of experience building fast, accessible interfaces and LLM-powered features with Next.js, React, Node.js, and Firebase. Led the WordPress → Next.js 14 migration of internationalschooling.org and shipped its LLM-based course recommendation and class summarization features.",
 
   applicationName: "Mohammad Aazim — Portfolio",
   authors: [{ name: "Mohammad Aazim", url: SITE_URL }],
@@ -95,9 +95,13 @@ export const metadata = {
   keywords: [
     "Mohammad Aazim",
     "Aazim Sheikh",
-    "Front-End Developer",
+    "AI Full Stack Developer",
+    "Full Stack Developer",
     "Next.js Developer",
     "React Developer",
+    "Node.js Developer",
+    "LLM Integration",
+    "Generative AI",
     "JavaScript Developer Delhi",
     "Tailwind CSS",
     "GSAP",
@@ -116,18 +120,18 @@ export const metadata = {
     type: "website",
     url: SITE_URL,
     siteName: "Mohammad Aazim",
-    title: "Mohammad Aazim — Front-End Web Developer",
+    title: "Mohammad Aazim — AI Full Stack Developer",
     description:
-      "Next.js · React · Tailwind. Editorial portfolio of a front-end developer based in Delhi.",
+      "Next.js · Node.js · LLM Integration. Editorial portfolio of an AI full stack developer based in Delhi.",
     locale: "en_US",
   },
 
   // Twitter/X card. summary_large_image gives the full hero preview.
   twitter: {
     card: "summary_large_image",
-    title: "Mohammad Aazim — Front-End Web Developer",
+    title: "Mohammad Aazim — AI Full Stack Developer",
     description:
-      "Next.js · React · Tailwind. Editorial portfolio of a front-end developer based in Delhi.",
+      "Next.js · Node.js · LLM Integration. Editorial portfolio of an AI full stack developer based in Delhi.",
     creator: "@aazim",
   },
 
@@ -186,9 +190,9 @@ const personJsonLd = {
   alternateName: "Aazim Sheikh",
   url: SITE_URL,
   image: `${SITE_URL}/Firefly.jpg`,
-  jobTitle: "Front-End Web Developer",
+  jobTitle: "AI Full Stack Developer",
   description:
-    "Front-End Web Developer with 4+ years building production Next.js and React applications.",
+    "AI Full Stack Developer with 4+ years building production Next.js, React, and Node.js applications, including LLM-powered recommendation and summarization features.",
   email: "mailto:sheikhaazim13@gmail.com",
   telephone: "+91-8533990022",
   address: {
@@ -215,7 +219,14 @@ const personJsonLd = {
   knowsAbout: [
     "Next.js",
     "React",
+    "Node.js",
     "JavaScript",
+    "REST APIs",
+    "GraphQL",
+    "LLM Integration",
+    "Generative AI",
+    "Prompt Engineering",
+    "Firebase",
     "Tailwind CSS",
     "GSAP",
     "Web Performance",
@@ -240,7 +251,7 @@ const professionalServiceJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": `${SITE_URL}/#service`,
-  name: "Mohammad Aazim — Front-End Development",
+  name: "Mohammad Aazim — AI Full Stack Development",
   url: SITE_URL,
   image: `${SITE_URL}/Firefly.jpg`,
   founder: { "@id": `${SITE_URL}/#person` },
@@ -252,9 +263,11 @@ const professionalServiceJsonLd = {
     addressCountry: "IN",
   },
   serviceType: [
-    "Front-end web development",
+    "Full stack web development",
     "Next.js development",
     "React development",
+    "Node.js development",
+    "LLM / Generative AI integration",
     "Web performance optimization",
     "Internationalization (i18n)",
   ],

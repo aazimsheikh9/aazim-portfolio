@@ -21,16 +21,21 @@ const services = [
   },
   {
     n: "04",
-    title: "REST + Firebase",
-    body: "Auth flows, role-based access, REST API integration, and Firestore data models tuned for the access patterns the UI actually uses.",
+    title: "Full Stack + APIs",
+    body: "Node.js services, REST and GraphQL APIs, role-based auth, and Firestore/SQL data models tuned for the access patterns the UI actually uses.",
   },
   {
     n: "05",
+    title: "LLM / Generative AI Integration",
+    body: "LLM-powered features shipped into real product flows — recommendation engines, content summarization, prompt engineering tuned for consistent, structured output.",
+  },
+  {
+    n: "06",
     title: "Responsive UI",
     body: "Tailwind-first systems with Material UI where it fits — composable, themable, and accessible by default.",
   },
   {
-    n: "06",
+    n: "07",
     title: "AI-assisted Workflow",
     body: "I ship faster with Claude and friends in the loop — for refactors, scaffolds, and review — without outsourcing the design taste.",
   },
@@ -56,7 +61,7 @@ export default function Services() {
         </div>
 
         <Reveal as="h2" className="stitle stitle--xl">
-          Front-end engineering with a designer&apos;s pulse.
+          Full stack engineering with an AI edge and a designer&apos;s pulse.
         </Reveal>
 
         <div className="svc__grid">

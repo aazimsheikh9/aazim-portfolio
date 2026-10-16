@@ -232,7 +232,7 @@ export default function Menu() {
           <div>
             <div className="text-sand/45 mb-2">Resume</div>
             <a
-              href="/Mohammad_Aazim_Resume_2026_1.pdf"
+              href="/Mohammad_Aazim_AI_Full_Stack_Developer_Resume.pdf"
               download
               className="hover:text-terra-soft"
               data-cursor="Download"

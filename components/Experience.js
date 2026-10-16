@@ -2,21 +2,41 @@ import Reveal from "./Reveal";
 
 const work = [
   {
-    role: "Web Developer",
+    role: "Full Stack Developer (Web Developer)",
     company: "Entire Techno Solutions Pvt. Ltd.",
     location: "Delhi",
-    period: "Jun 2022 — Present",
+    period: "Jun 2023 — Present",
     notes: [
       "Led WordPress → Next.js 14 migration of internationalschooling.org with zero downtime.",
       "+35% page performance, +20% engagement post-launch.",
+      "Shipped LLM-powered course recommendations and class summarization.",
       "Built role-based auth, multilingual routing, and REST integrations.",
       "Letter of Appreciation from management.",
     ],
   },
   {
+    role: "Associate — Technical Support",
+    company: "Cognizant",
+    location: "India",
+    period: "Nov 2022 — Jun 2023",
+    notes: [
+      "Supported technical troubleshooting and issue resolution for applications and systems.",
+      "Contributed to web development tasks alongside support responsibilities.",
+    ],
+  },
+  {
+    role: "Web Developer",
+    company: "Entire Techno Solutions Pvt. Ltd.",
+    location: "Delhi",
+    period: "Jun 2022 — Oct 2022",
+    notes: [
+      "Frontend implementation, responsive interfaces, and application enhancements.",
+    ],
+  },
+  {
     role: "Software Developer Intern",
     company: "Ackrolix Innovations",
-    location: "Remote",
+    location: "Gurgaon",
     period: "Mar 2022 — May 2022",
     notes: [
       "Built student management modules in jQuery / JavaScript backed by SQL.",
@@ -49,7 +69,7 @@ export default function Experience() {
         <div className="exp__grid">
           <div className="exp__list">
             {work.map((w) => (
-              <article className="exp__item" key={w.company}>
+              <article className="exp__item" key={`${w.company}-${w.period}`}>
                 <div className="exp__period">{w.period}</div>
                 <div>
                   <h3 className="exp__role">{w.role}</h3>

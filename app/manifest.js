@@ -4,10 +4,10 @@
 
 export default function manifest() {
   return {
-    name: "Mohammad Aazim — Front-End Web Developer",
+    name: "Mohammad Aazim — AI Full Stack Developer",
     short_name: "Aazim",
     description:
-      "Editorial portfolio of Mohammad Aazim — Front-End Web Developer (Next.js · React · Tailwind).",
+      "Editorial portfolio of Mohammad Aazim — AI Full Stack Developer (Next.js · Node.js · LLM Integration).",
     start_url: "/",
     display: "standalone",
     background_color: "#14100F",

@@ -12,24 +12,27 @@ export default function About() {
         </div>
 
         <Reveal as="h2" className="stitle stitle--wide">
-          I build the part of the web people actually feel — interfaces that
-          load fast, read clearly, and move with intent.
+          I build the part of the web people actually feel — and the AI
+          underneath it that makes the product smarter.
         </Reveal>
 
         <div className="about__grid">
           <div className="about__copy">
             <Reveal>
-              Four+ years shipping front-ends with Next.js, React, and
-              JavaScript. I led the migration of internationalschooling.org from
-              WordPress to Next.js 14 with zero downtime, lifted page
-              performance by 35% and engagement by 20%, and earned a Letter of
-              Appreciation from management for the rollout.
+              Four+ years shipping full-stack products with Next.js, React,
+              Node.js, and REST/GraphQL APIs. I led the migration of
+              internationalschooling.org from WordPress to Next.js 14 with zero
+              downtime, lifted page performance by 35% and engagement by 20%,
+              and earned a Letter of Appreciation from management for the
+              rollout.
             </Reveal>
             <Reveal>
-              I care a lot about pacing and rhythm — type that breathes, motion
-              that has reason, and an accessibility floor that never drops. Most
-              of my recent work lives at the intersection of editorial design
-              and real product engineering.
+              More recently I&apos;ve been building the AI layer on top — LLM-powered
+              course recommendations and class summarization shipped straight
+              into the student onboarding and revision flows. I care about
+              pacing and rhythm as much as I care about correct state — type
+              that breathes, motion that has reason, and an accessibility floor
+              that never drops.
             </Reveal>
           </div>
 
@@ -53,7 +56,7 @@ export default function About() {
               </div>
               <div>
                 <dt>Focus</dt>
-                <dd>Next.js · Motion</dd>
+                <dd>Next.js · LLM Integration</dd>
               </div>
             </dl>
           </div>

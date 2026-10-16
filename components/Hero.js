@@ -30,8 +30,9 @@ export default function Hero() {
 
         <div className="hero__lower">
           <p className="hero__sub">
-            Front-End Web Developer building fast, expressive, accessible web
-            experiences with Next.js, React, and a sharp eye for motion.
+            AI Full Stack Developer building fast, accessible web experiences
+            and LLM-powered features with Next.js, React, Node.js, and a sharp
+            eye for motion.
           </p>
 
           <div className="hero__cta">
@@ -40,7 +41,7 @@ export default function Hero() {
             </a>
             <a
               className="btn btn--ghost"
-              href="/Mohammad_Aazim_Resume_2026_1.pdf"
+              href="/Mohammad_Aazim_AI_Full_Stack_Developer_Resume.pdf"
               download
             >
               Resume <span className="glyph">↓</span>
@@ -49,8 +50,8 @@ export default function Hero() {
         </div>
 
         <div className="hero__strip">
-          <span>(01) Next.js · React</span>
-          <span>(02) Tailwind · GSAP</span>
+          <span>(01) Next.js · Node.js</span>
+          <span>(02) LLM Integration</span>
           <span>(03) i18n · Perf · A11y</span>
           <span>
             <span className="dot" />
